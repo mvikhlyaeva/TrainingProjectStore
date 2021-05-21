@@ -1,0 +1,12 @@
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\bin\Debug\net5.0\TrainingProject.Core.deps.json
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\bin\Debug\net5.0\TrainingProject.Core.dll
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\bin\Debug\net5.0\ref\TrainingProject.Core.dll
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\bin\Debug\net5.0\TrainingProject.Core.pdb
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\obj\Debug\net5.0\TrainingProject.Core.csprojAssemblyReference.cache
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\obj\Debug\net5.0\TrainingProject.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\obj\Debug\net5.0\TrainingProject.Core.AssemblyInfoInputs.cache
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\obj\Debug\net5.0\TrainingProject.Core.AssemblyInfo.cs
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\obj\Debug\net5.0\TrainingProject.Core.csproj.CoreCompileInputs.cache
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\obj\Debug\net5.0\TrainingProject.Core.dll
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\obj\Debug\net5.0\ref\TrainingProject.Core.dll
+C:\Users\Acer\Documents\GitHub\TrainingProject.Core\obj\Debug\net5.0\TrainingProject.Core.pdb
