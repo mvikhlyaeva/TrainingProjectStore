@@ -22,15 +22,13 @@ namespace TrainingProject.Application.Queries.StoreDepartments.DeleteStoreDepart
         public async Task<StoreDepartmentDomainModel> Handle(DeleteStoreDepartmentQuery request, CancellationToken cancellationToken)
         {
             var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId);
-            if (StoreDepartment != null)
-            {
-                _context.storeDepartments.Remove(StoreDepartment);
-                await _context.SaveChangesAsync();
+            if (StoreDepartment == null)
+                throw new StoreDepartmentNotFoundException();
 
-                return _mapper.Map<StoreDepartmentDomainModel>(StoreDepartment);
+            _context.storeDepartments.Remove(StoreDepartment);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<StoreDepartmentDomainModel>(StoreDepartment);
 
-            }
-            else throw new StoreDepartmentNotFoundException();
         }
     }
 }

@@ -26,9 +26,10 @@ namespace TrainingProject.Application.Queries.StoreDepartments.GetStoreDepartmen
         {
             var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId);
 
-            if (StoreDepartment != null)
+            if (StoreDepartment == null)
+                throw new StoreDepartmentNotFoundException();
             return _mapper.Map<StoreDepartmentDomainModel>(StoreDepartment);
-            else throw new StoreDepartmentNotFoundException();
+
         }
     }
 }

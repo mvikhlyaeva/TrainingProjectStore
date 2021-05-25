@@ -21,13 +21,14 @@ namespace TrainingProject.Application.Queries.StoreDepartments.PatchStoreDepartm
         public async Task<SchemeType> Handle(PatchStoreDepartmentQuery request, CancellationToken cancellationToken)
         {
             var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId);
-            if (StoreDepartment != null)
-            {
-                StoreDepartment.Scheme = request.Scheme;
-                await _context.SaveChangesAsync();
-                return StoreDepartment.Scheme;
-            }
-            else throw new StoreDepartmentNotFoundException();
+            if (StoreDepartment == null)
+                throw new StoreDepartmentNotFoundException();
+
+            StoreDepartment.Scheme = request.Scheme;
+            await _context.SaveChangesAsync();
+            return StoreDepartment.Scheme;
+
+
         }
 
     }

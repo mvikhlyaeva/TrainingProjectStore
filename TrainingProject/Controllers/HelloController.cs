@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TrainingProject.Core;
 
 namespace TrainingProject.Controllers
 {
@@ -13,13 +14,13 @@ namespace TrainingProject.Controllers
         [HttpGet]
         public string Index()
         {
-            return "Hello";
+            return ExceptionMessagesHelper.notFound;
         }
 
         [HttpGet("sqr")]
-        public int Sqr (int x)
+        public int Sqr(int x)
         {
-            return x*x;
+            return x * x;
         }
 
     }

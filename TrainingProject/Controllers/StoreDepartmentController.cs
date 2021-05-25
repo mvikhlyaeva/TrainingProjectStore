@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ using TrainingProject.tables;
 
 namespace TrainingProject.Controllers
 {
-//qq
+
     [Route("api")]
     [ApiController]
     [Produces("application/json")]
@@ -31,12 +32,14 @@ namespace TrainingProject.Controllers
         }
 
         [HttpPost("StoreDeparments")]
+        [ProducesResponseType(typeof(StoreDepartmentDomainModel), StatusCodes.Status200OK)]
         public async Task<StoreDepartmentDomainModel> AddStoreDepartments([FromBody] StoreDepartmentDomainModel SD, CancellationToken cancellationToken)
         {
             return await _mediator.Send(new PostStoreDepartmentQuery(SD), cancellationToken);
         }
 
         [HttpPatch("store/{storeId}/department/{departmentId}")]
+        [ProducesResponseType(typeof(SchemeType), StatusCodes.Status200OK)]
         public async Task<SchemeType> ChangeStoreDepartments(int storeId, int departmentId, SchemeType scheme, CancellationToken cancellationToken)
         {
             return await _mediator.Send(new PatchStoreDepartmentQuery(storeId, departmentId, scheme), cancellationToken);
@@ -44,12 +47,14 @@ namespace TrainingProject.Controllers
 
 
         [HttpGet("store/{storeId}/department/{departmentId}")]
+        [ProducesResponseType(typeof(StoreDepartmentDomainModel), StatusCodes.Status200OK)]
         public async Task<StoreDepartmentDomainModel> GetStoreDepartments(int storeId, int departmentId, CancellationToken cancellationToken)
         {
             return await _mediator.Send(new GetStoreDepartmentQuery(storeId, departmentId), cancellationToken);
         }
 
         [HttpDelete("store/{storeId}/department/{departmentId}")]
+        [ProducesResponseType(typeof(StoreDepartmentDomainModel), StatusCodes.Status200OK)]
         public async Task<StoreDepartmentDomainModel> DeleteStoreDepartments(int storeId, int departmentId, CancellationToken cancellationToken)
         {
             return await _mediator.Send(new DeleteStoreDepartmentQuery(storeId, departmentId), cancellationToken);
