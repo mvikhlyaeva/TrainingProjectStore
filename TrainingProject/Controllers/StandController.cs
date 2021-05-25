@@ -49,7 +49,6 @@ namespace TrainingProject.Controllers
         }
 
 
-
         [HttpPost("stands")]
         [ProducesResponseType(typeof(StandDomainModel), StatusCodes.Status200OK)]
         public async Task<List<StandDomainModelForPost>> AddUpDelStands([FromQuery] int storeId, int departmentId, List<StandDomainModelForPost> stands, CancellationToken cancellationToken)

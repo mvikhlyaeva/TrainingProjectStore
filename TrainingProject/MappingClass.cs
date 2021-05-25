@@ -24,7 +24,13 @@ namespace TrainingProject
             CreateMap<Stand, StandDomainModelForPost>();
             CreateMap<StandDomainModelForPost, Stand>();
 
-            CreateMap<List<StandDomainModelForGet>, List<Stand>>();
+            CreateMap<Cell, CellDomainModelForPostInput>();
+            CreateMap<CellDomainModelForPostInput, Cell>();
+
+            CreateMap<Cell, CellDomainModelForPut>();
+            CreateMap<CellDomainModelForPut, Cell>();
+
+            /*CreateMap<List<StandDomainModelForGet>, List<Stand>>();
             CreateMap<List<Stand>, List<StandDomainModelForGet>>();
 
             CreateMap<List<StandDomainModelForPost>, List<Stand>>();
@@ -37,7 +43,9 @@ namespace TrainingProject
             CreateMap<IOrderedEnumerable<StandDomainModelForPost>, List<StandDomainModelForPost>>();
 
             CreateMap<List<Stand>, IOrderedQueryable<StandDomainModelForPost>>();
-            CreateMap<IOrderedQueryable<StandDomainModelForPost>, List<Stand>>();
+            CreateMap<IOrderedQueryable<StandDomainModelForPost>, List<Stand>>();*/
+
+
         }
 
     }

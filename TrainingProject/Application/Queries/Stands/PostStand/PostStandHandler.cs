@@ -27,7 +27,7 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
         {
             var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId);
             if (StoreDepartment == null)
-                throw new StandNoForeignKey();
+                throw new StandNoForeignKeyException();
 
             List<Stand> standsdb = _context.stands.Where(u => u.StoreId == request.StoreId && u.DepartmentId == request.DepartmentId).OrderBy(u => u.Id).ToList();
 
@@ -57,10 +57,11 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
             }
             while (i < standsdb.Count()) { _context.stands.Remove(standsdb[i]); standsdb.Remove(standsdb[i]); i++; }
             j = 0;
+            var standsdbAll = _context.stands.OrderBy(u => u.Id).ToList();
             while (j < stands.Count() && stands[j].Id == null)
             {
                 Stand stand = new Stand();
-                if (standsdb.Count() > 0) { stands[j].Id = standsdb[standsdb.Count() - 1].Id + j + 1; }
+                if (standsdbAll.Count() > 0) { stands[j].Id = standsdbAll[standsdbAll.Count() - 1].Id + j + 1; }
                 else stands[j].Id = j + 1;
                 stand = _mapper.Map<Stand>(stands[j]);
 

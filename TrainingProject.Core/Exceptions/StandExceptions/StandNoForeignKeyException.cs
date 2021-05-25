@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TrainingProject.Core.Exceptions.StandExceptons
 {
-    public class StandNoForeignKey : Exception
+    public class StandNoForeignKeyException : Exception
     {
-        public StandNoForeignKey(string message = ExceptionMessagesHelper.noForeingKey)
+        public StandNoForeignKeyException(string message = ExceptionMessagesHelper.noForeingKey)
              : base(message)
         {
 

@@ -28,7 +28,6 @@ namespace TrainingProject.Application.Queries.StoreDepartments.PostStoreDepartme
             _context.storeDepartments.Add(_mapper.Map<StoreDepartment>(request.StD));
             await _context.SaveChangesAsync(cancellationToken);
             return request.StD;
-
         }
 
     }
