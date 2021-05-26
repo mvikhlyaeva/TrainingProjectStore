@@ -5,8 +5,8 @@ namespace TrainingProject.Application.Queries.StoreDepartments.GetStoreDepartmen
 {
     public class GetStoreDepartmentQuery : IRequest<StoreDepartmentDomainModel>
     {
-        public int StoreId { get; set; }
-        public int DepartmentId { get; set; }
+        public int StoreId { get; }
+        public int DepartmentId { get; }
 
         public GetStoreDepartmentQuery(int storeId, int departmentId)
         {

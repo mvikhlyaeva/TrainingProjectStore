@@ -13,25 +13,25 @@ using TrainProject.Domain.DomainModels;
 
 namespace TrainingProject.Application.Queries.Stands.PostStand
 {
-    public class PostStandHandler : IRequestHandler<PostStandQuery, List<StandDomainModelForPost>>
+    public class PostStandCommandHandler : IRequestHandler<PostStandCommandQuery, List<StandDomainModelForPost>>
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-        public PostStandHandler(ApplicationContext context, IMapper mapper)
+        public PostStandCommandHandler(ApplicationContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public async Task<List<StandDomainModelForPost>> Handle(PostStandQuery request, CancellationToken cancellationToken)
+        public async Task<List<StandDomainModelForPost>> Handle(PostStandCommandQuery request, CancellationToken cancellationToken)
         {
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId);
+            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
             if (StoreDepartment == null)
                 throw new StandNoForeignKeyException();
 
-            List<Stand> standsdb = _context.stands.Where(u => u.StoreId == request.StoreId && u.DepartmentId == request.DepartmentId).OrderBy(u => u.Id).ToList();
+            var standsdb = await _context.stands.Where(u => u.StoreId == request.StoreId && u.DepartmentId == request.DepartmentId).OrderBy(u => u.Id).ToListAsync(cancellationToken);
 
-            List<StandDomainModelForPost> stands = request.Stands.OrderBy(st => st?.Id).ToList();
+            var stands = request.Stands.OrderBy(st => st?.Id).ToList();
 
             int j = 0, i = 0;
             for (; i < standsdb.Count() && j < stands.Count();)
@@ -43,8 +43,6 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
                     standsdb[i].Size = stands[j].Size;
                     standsdb[i].Code = stands[j].Code;
                     standsdb[i].Side = stands[j].Side;
-                    //standsdb[i] = _mapper.Map<Stand>(stands[j]);
-
                     i++; j++;
                 }
                 else if (standsdb[i].Id < stands[j].Id)
@@ -57,7 +55,7 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
             }
             while (i < standsdb.Count()) { _context.stands.Remove(standsdb[i]); standsdb.Remove(standsdb[i]); i++; }
             j = 0;
-            var standsdbAll = _context.stands.OrderBy(u => u.Id).ToList();
+            var standsdbAll = await _context.stands.OrderBy(u => u.Id).ToListAsync(cancellationToken);
             while (j < stands.Count() && stands[j].Id == null)
             {
                 Stand stand = new Stand();
@@ -70,7 +68,7 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
                 _context.stands.Add(stand);
                 j++;
             }
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return _mapper.Map<List<StandDomainModelForPost>>(standsdb);
         }
     }

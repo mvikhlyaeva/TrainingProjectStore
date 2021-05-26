@@ -14,8 +14,5 @@ namespace TrainProject.Domain.DomainModels
         public int Position { get; set; }
         public string Shelf { get; set; }
         public CellType Type { get; set; }
-
-
-
     }
 }

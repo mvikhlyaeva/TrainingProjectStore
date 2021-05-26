@@ -42,7 +42,7 @@ namespace TrainingProject.Controllers
         [ProducesResponseType(typeof(List<CellDomainModelForPostInput>), StatusCodes.Status200OK)]
         public async Task<Cell> UpdateCells(int cellId, CellDomainModelForPut cell, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PutCellQuery(cellId, cell), cancellationToken);
+            return await _mediator.Send(new PutCellCommandQuery(cellId, cell), cancellationToken);
         }
 
     }

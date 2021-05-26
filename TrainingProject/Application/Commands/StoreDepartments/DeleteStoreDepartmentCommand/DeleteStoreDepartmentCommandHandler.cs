@@ -9,24 +9,24 @@ using TrainingProject.tables;
 
 namespace TrainingProject.Application.Queries.StoreDepartments.DeleteStoreDepartment
 {
-    public class DeleteStoreDepartmentHandler : IRequestHandler<DeleteStoreDepartmentQuery, StoreDepartmentDomainModel>
+    public class DeleteStoreDepartmentCommandHandler : IRequestHandler<DeleteStoreDepartmentCommandQuery, StoreDepartmentDomainModel>
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-        public DeleteStoreDepartmentHandler(ApplicationContext context, IMapper mapper)
+        public DeleteStoreDepartmentCommandHandler(ApplicationContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public async Task<StoreDepartmentDomainModel> Handle(DeleteStoreDepartmentQuery request, CancellationToken cancellationToken)
+        public async Task<StoreDepartmentDomainModel> Handle(DeleteStoreDepartmentCommandQuery request, CancellationToken cancellationToken)
         {
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId);
+            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
             if (StoreDepartment == null)
                 throw new StoreDepartmentNotFoundException();
 
             _context.storeDepartments.Remove(StoreDepartment);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
             return _mapper.Map<StoreDepartmentDomainModel>(StoreDepartment);
 
         }

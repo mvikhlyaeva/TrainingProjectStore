@@ -24,12 +24,11 @@ namespace TrainingProject.Application.Queries.Stands.GetStand
         }
         public async Task<List<StandDomainModelForGet>> Handle(GetStandQuery request, CancellationToken cancellationToken)
         {
-            var stands = await _context.stands.ToListAsync(cancellationToken);
-            var resStands = stands.Where(st => st.StoreId == request.StoreId && st.DepartmentId == request.DepartmentId);
-            if (resStands == null)
-                throw new StandNotFoundExceptions();
-
-            return _mapper.Map<List<StandDomainModelForGet>>(resStands);
+            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
+            if (storeDepartment == null)
+                throw new StandNoForeignKeyException();
+            var stands = await _context.stands.Where(st => st.StoreId == request.StoreId && st.DepartmentId == request.DepartmentId).ToListAsync(cancellationToken);
+            return _mapper.Map<List<StandDomainModelForGet>>(stands);
 
         }
     }

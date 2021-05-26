@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -24,10 +23,10 @@ namespace TrainingProject.Application.Queries.Cells.PostCell
         }
         public async Task<List<CellDomainModelForPostInput>> Handle(PostCellQuery request, CancellationToken cancellationToken)
         {
-            var Stand = await _context.stands.FirstOrDefaultAsync(sd => sd.Id == request.StandId);
+            var Stand = await _context.stands.FirstOrDefaultAsync(sd => sd.Id == request.StandId, cancellationToken);
             if (Stand == null)
                 throw new CellNoForeignKeyException();
-            List<Cell> cellsdb = _context.cells.Where(u => u.StandId == request.StandId).OrderBy(u => u.Id).ToList();
+            var cellsdb = await _context.cells.Where(u => u.StandId == request.StandId).OrderBy(u => u.Id).ToListAsync(cancellationToken);
             foreach (CellDomainModelForPostInput cell in request.Cells)
             {
                 if (cellsdb.FirstOrDefault(u => u.Id == cell.Id) != null)

@@ -12,26 +12,26 @@ using TrainProject.Domain.DomainModels;
 
 namespace TrainingProject.Application.Queries.Cells.PutCell
 {
-    public class PutCellHandler : IRequestHandler<PutCellQuery, Cell>
+    public class PutCellCommandHandler : IRequestHandler<PutCellCommandQuery, Cell>
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-        public PutCellHandler(ApplicationContext context, IMapper mapper)
+        public PutCellCommandHandler(ApplicationContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public async Task<Cell> Handle(PutCellQuery request, CancellationToken cancellationToken)
+        public async Task<Cell> Handle(PutCellCommandQuery request, CancellationToken cancellationToken)
         {
-            Cell celldb = await _context.cells.FirstOrDefaultAsync(cells => cells.Id == request.CellId);
+            Cell celldb = await _context.cells.FirstOrDefaultAsync(cells => cells.Id == request.CellId, cancellationToken);
             if (celldb == null)
                 throw new CellNotFoundException();
             celldb.Position = request.Cell.Position;
             celldb.Shelf = request.Cell.Shelf;
             celldb.Code = request.Cell.Code;
             celldb.Type = request.Cell.Type;
-            _context.SaveChangesAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
             return celldb;
 
         }

@@ -9,19 +9,19 @@ using TrainingProject.tables;
 
 namespace TrainingProject.Application.Queries.StoreDepartments.PostStoreDepartment
 {
-    public class PostStoreDepartmentHandler : IRequestHandler<PostStoreDepartmentQuery, StoreDepartmentDomainModel>
+    public class PostStoreDepartmentCommandHandler : IRequestHandler<PostStoreDepartmentCommandQuery, StoreDepartmentDomainModel>
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-        public PostStoreDepartmentHandler(ApplicationContext context, IMapper mapper)
+        public PostStoreDepartmentCommandHandler(ApplicationContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public async Task<StoreDepartmentDomainModel> Handle(PostStoreDepartmentQuery request, CancellationToken cancellationToken)
+        public async Task<StoreDepartmentDomainModel> Handle(PostStoreDepartmentCommandQuery request, CancellationToken cancellationToken)
         {
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StD.StoreId && sd.DepartmentId == request.StD.DepartmentId);
+            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StD.StoreId && sd.DepartmentId == request.StD.DepartmentId, cancellationToken);
             if (StoreDepartment != null)
                 throw new StoreDepartmentRepeatKeyException();
 

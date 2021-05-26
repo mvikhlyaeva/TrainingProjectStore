@@ -35,14 +35,14 @@ namespace TrainingProject.Controllers
         [ProducesResponseType(typeof(StoreDepartmentDomainModel), StatusCodes.Status200OK)]
         public async Task<StoreDepartmentDomainModel> AddStoreDepartments([FromBody] StoreDepartmentDomainModel SD, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PostStoreDepartmentQuery(SD), cancellationToken);
+            return await _mediator.Send(new PostStoreDepartmentCommandQuery(SD), cancellationToken);
         }
 
         [HttpPatch("store/{storeId}/department/{departmentId}")]
         [ProducesResponseType(typeof(SchemeType), StatusCodes.Status200OK)]
         public async Task<SchemeType> ChangeStoreDepartments(int storeId, int departmentId, SchemeType scheme, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PatchStoreDepartmentQuery(storeId, departmentId, scheme), cancellationToken);
+            return await _mediator.Send(new PatchStoreDepartmentCommandQuery(storeId, departmentId, scheme), cancellationToken);
         }
 
 
@@ -57,7 +57,7 @@ namespace TrainingProject.Controllers
         [ProducesResponseType(typeof(StoreDepartmentDomainModel), StatusCodes.Status200OK)]
         public async Task<StoreDepartmentDomainModel> DeleteStoreDepartments(int storeId, int departmentId, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new DeleteStoreDepartmentQuery(storeId, departmentId), cancellationToken);
+            return await _mediator.Send(new DeleteStoreDepartmentCommandQuery(storeId, departmentId), cancellationToken);
         }
 
     }
