@@ -4,12 +4,12 @@ using TrainProject.Domain.DomainModels;
 
 namespace TrainingProject.Application.Queries.Cells.PostCell
 {
-    public class PostCellQuery : IRequest<List<CellDomainModelForPostInput>>
+    public class PostCellQuery : IRequest<List<CellDomainModelForPost>>
     {
         public int StandId { get; }
-        public List<CellDomainModelForPostInput> Cells { get; }
+        public List<CellDomainModelForPost> Cells { get; }
 
-        public PostCellQuery(int standId, List<CellDomainModelForPostInput> cells)
+        public PostCellQuery(int standId, List<CellDomainModelForPost> cells)
         {
             StandId = standId;
             Cells = cells;

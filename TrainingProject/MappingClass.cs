@@ -24,8 +24,8 @@ namespace TrainingProject
             CreateMap<Stand, StandDomainModelForPost>();
             CreateMap<StandDomainModelForPost, Stand>();
 
-            CreateMap<Cell, CellDomainModelForPostInput>();
-            CreateMap<CellDomainModelForPostInput, Cell>();
+            CreateMap<Cell, CellDomainModelForPost>();
+            CreateMap<CellDomainModelForPost, Cell>();
 
             CreateMap<Cell, CellDomainModelForPut>();
             CreateMap<CellDomainModelForPut, Cell>();

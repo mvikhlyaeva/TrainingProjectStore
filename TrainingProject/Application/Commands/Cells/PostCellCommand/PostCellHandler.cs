@@ -11,7 +11,7 @@ using TrainProject.Domain.DomainModels;
 
 namespace TrainingProject.Application.Queries.Cells.PostCell
 {
-    public class PostCellHandler : IRequestHandler<PostCellQuery, List<CellDomainModelForPostInput>>
+    public class PostCellHandler : IRequestHandler<PostCellQuery, List<CellDomainModelForPost>>
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
@@ -21,13 +21,13 @@ namespace TrainingProject.Application.Queries.Cells.PostCell
             _context = context;
             _mapper = mapper;
         }
-        public async Task<List<CellDomainModelForPostInput>> Handle(PostCellQuery request, CancellationToken cancellationToken)
+        public async Task<List<CellDomainModelForPost>> Handle(PostCellQuery request, CancellationToken cancellationToken)
         {
             var Stand = await _context.stands.FirstOrDefaultAsync(sd => sd.Id == request.StandId, cancellationToken);
             if (Stand == null)
                 throw new CellNoForeignKeyException();
             var cellsdb = await _context.cells.Where(u => u.StandId == request.StandId).OrderBy(u => u.Id).ToListAsync(cancellationToken);
-            foreach (CellDomainModelForPostInput cell in request.Cells)
+            foreach (CellDomainModelForPost cell in request.Cells)
             {
                 if (cellsdb.FirstOrDefault(u => u.Id == cell.Id) != null)
                     throw new CellRepeatKeyException();

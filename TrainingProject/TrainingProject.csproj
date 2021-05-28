@@ -24,8 +24,4 @@
     <ProjectReference Include="..\TrainProject.DomainModels\TrainProject.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Queries\Cells\" />
-  </ItemGroup>
-
 </Project>

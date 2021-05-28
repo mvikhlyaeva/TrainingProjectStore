@@ -7,7 +7,7 @@ using TrainingProject.Core;
 
 namespace TrainProject.Domain.DomainModels
 {
-    public class CellDomainModelForPostInput
+    public class CellDomainModelForPost
     {
         public int Id { get; set; }
         public string Code { get; set; }
