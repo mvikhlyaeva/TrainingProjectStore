@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Logging;
 
 namespace TrainingProject.tables
 {
@@ -19,12 +19,12 @@ namespace TrainingProject.tables
             Database.EnsureCreated();
         }*/
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
             modelBuilder.ApplyConfiguration(new StoreDepartmentConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new StandConfiguration());
@@ -32,9 +32,22 @@ namespace TrainingProject.tables
 
             base.OnModelCreating(modelBuilder);
         }
-        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5433;Database=usersdb;Username=postgres;Password=Qwert6789");
-        }*/
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    //optionsBuilder.UseNpgsql("Host=localhost;Port=5433;Database=usersdb;Username=postgres;Password=Qwert6789");
+        //    optionsBuilder.UseLoggerFactory(MyLoggerFactory);
+        //}
+
+        //// static readonly ILoggerFactory loggerFactory = new LoggerFactory().AddConsole(LogLevel.Information);
+
+        //public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder =>
+        //{
+        //    builder.AddProvider(new MyLoggerProvider());    // указываем наш провайдер логгирования
+        //    //    builder.AddFilter((category, level) => category == DbLoggerCategory.Database.Command.Name
+        //    //                && level == LogLevel.Information)
+        //    //.AddProvider(new MyLoggerProvider());
+        //    //builder.AddConsole();
+        //});
     }
 }

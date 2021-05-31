@@ -1,9 +1,8 @@
-﻿
-namespace TrainingProject.Core
+﻿namespace TrainingProject.Core
 {
     public enum CellType
     {
-        CellType,
+        Client,
         Top
     }
 
@@ -14,4 +13,3 @@ namespace TrainingProject.Core
         ClientAndBackExtentded
     }
 }
-

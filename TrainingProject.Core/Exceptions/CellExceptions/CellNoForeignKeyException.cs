@@ -11,7 +11,6 @@ namespace TrainingProject.Core.Exceptions.CellException
         public CellNoForeignKeyException(string message = ExceptionMessagesHelper.noForeingKey)
              : base(message)
         {
-
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using TrainingProject.Domain;
 using TrainingProject.tables;
 using TrainProject.Domain.DomainModels;
+using TrainProject.Domain.DomainModels.ProductDomainModel;
 
 namespace TrainingProject
 {
@@ -13,7 +14,6 @@ namespace TrainingProject
         {
             CreateMap<StoreDepartment, StoreDepartmentDomainModel>();
             CreateMap<StoreDepartmentDomainModel, StoreDepartment>();
-
 
             CreateMap<Stand, StandDomainModelForGet>();
             CreateMap<StandDomainModelForGet, Stand>();
@@ -30,6 +30,12 @@ namespace TrainingProject
             CreateMap<Cell, CellDomainModelForPut>();
             CreateMap<CellDomainModelForPut, Cell>();
 
+            CreateMap<Product, ProductDomainModelForPost>();
+            CreateMap<ProductDomainModelForPost, Product>();
+
+            CreateMap<Product, ProductDomainModelForGet>();
+            CreateMap<ProductDomainModelForGet, Product>();
+
             /*CreateMap<List<StandDomainModelForGet>, List<Stand>>();
             CreateMap<List<Stand>, List<StandDomainModelForGet>>();
 
@@ -44,9 +50,6 @@ namespace TrainingProject
 
             CreateMap<List<Stand>, IOrderedQueryable<StandDomainModelForPost>>();
             CreateMap<IOrderedQueryable<StandDomainModelForPost>, List<Stand>>();*/
-
-
         }
-
     }
 }

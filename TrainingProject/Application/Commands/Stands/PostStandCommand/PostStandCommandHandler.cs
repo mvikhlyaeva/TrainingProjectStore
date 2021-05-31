@@ -23,6 +23,7 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<List<StandDomainModelForPost>> Handle(PostStandCommandQuery request, CancellationToken cancellationToken)
         {
             var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
@@ -53,7 +54,9 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
                 }
                 else { j++; }
             }
+
             while (i < standsdb.Count()) { _context.stands.Remove(standsdb[i]); standsdb.Remove(standsdb[i]); i++; }
+            await _context.SaveChangesAsync(cancellationToken);
             j = 0;
             var standsdbAll = await _context.stands.OrderBy(u => u.Id).ToListAsync(cancellationToken);
             while (j < stands.Count() && stands[j].Id == null)
@@ -66,6 +69,7 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
                 stand.StoreId = request.StoreId;
                 stand.DepartmentId = request.DepartmentId;
                 _context.stands.Add(stand);
+                standsdb.Add(stand);
                 j++;
             }
             await _context.SaveChangesAsync(cancellationToken);
@@ -73,5 +77,3 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
         }
     }
 }
-
-

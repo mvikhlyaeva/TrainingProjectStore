@@ -15,7 +15,7 @@ namespace TrainingProject.tables
 
             builder.HasOne(u => u.Cell)
                 .WithMany(t => t.Products)
-                .HasForeignKey(u => u.Cellid);
+                .HasForeignKey(u => u.CellId);
         }
     }
 }

@@ -1,0 +1,173 @@
+Entity Framework Core 5.0.6 initialized 'ApplicationContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Training.Infrastructure Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Entity Framework Core 5.0.6 initialized 'ApplicationContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Training.Infrastructure Executed DbCommand (19ms) [Parameters=[@__request_StoreId_0='?' (DbType = Int32), @__request_DepartmentId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."StoreId", s."DepartmentId", s."Scheme"
+FROM "storeDepartments" AS s
+WHERE (s."StoreId" = @__request_StoreId_0) AND (s."DepartmentId" = @__request_DepartmentId_1)
+LIMIT 1Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Executed DbCommand (21ms) [Parameters=[@__request_StD_StoreId_0='?' (DbType = Int32), @__request_StD_DepartmentId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."StoreId", s."DepartmentId", s."Scheme"
+FROM "storeDepartments" AS s
+WHERE (s."StoreId" = @__request_StD_StoreId_0) AND (s."DepartmentId" = @__request_StD_DepartmentId_1)
+LIMIT 1Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO "storeDepartments" ("DepartmentId", "StoreId", "Scheme")
+VALUES (@p0, @p1, @p2);Executed DbCommand (1ms) [Parameters=[@__request_StoreId_0='?' (DbType = Int32), @__request_DepartmentId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."StoreId", s."DepartmentId", s."Scheme"
+FROM "storeDepartments" AS s
+WHERE (s."StoreId" = @__request_StoreId_0) AND (s."DepartmentId" = @__request_DepartmentId_1)
+LIMIT 1Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT p."Id", p."Cellid", p."ProductCode", p."Quantity", p."UpdateDate"
+FROM products AS p
+ORDER BY p."Id" DESCExecuted DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Executed DbCommand (21ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT p."Id", p."Cellid", p."ProductCode", p."Quantity", p."UpdateDate"
+FROM products AS p
+ORDER BY p."Id" DESCExecuted DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT p."Id", p."Cellid", p."ProductCode", p."Quantity", p."UpdateDate"
+FROM products AS p
+ORDER BY p."Id" DESCExecuted DbCommand (19ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?', @p3='?' (DbType = Decimal), @p4='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO products ("Id", "Cellid", "ProductCode", "Quantity", "UpdateDate")
+VALUES (@p0, @p1, @p2, @p3, @p4);Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT p."Id", p."Cellid", p."ProductCode", p."Quantity", p."UpdateDate"
+FROM products AS p
+ORDER BY p."Id" DESCExecuted DbCommand (16ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?', @p3='?' (DbType = Decimal), @p4='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+INSERT INTO products ("Id", "Cellid", "ProductCode", "Quantity", "UpdateDate")
+VALUES (@p0, @p1, @p2, @p3, @p4);Executed DbCommand (63ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Executed DbCommand (42ms) [Parameters=[@__request_CellId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c."Id", c."Code", c."Position", c."Shelf", c."StandId", c."Type"
+FROM cells AS c
+WHERE c."Id" = @__request_CellId_0
+LIMIT 1Executed DbCommand (12ms) [Parameters=[@__Cell_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Code", s."DepartmentId", s."Position", s."Side", s."Size", s."StoreId"
+FROM stands AS s
+WHERE s."Id" = @__Cell_StandId_0
+LIMIT 1Executed DbCommand (3ms) [Parameters=[@__Stand_StoreId_0='?' (DbType = Int32), @__Stand_DepartmentId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."StoreId", s."DepartmentId", s."Scheme"
+FROM "storeDepartments" AS s
+WHERE (s."StoreId" = @__Stand_StoreId_0) AND (s."DepartmentId" = @__Stand_DepartmentId_1)
+LIMIT 1Executed DbCommand (3ms) [Parameters=[@__request_CellId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT p."Id", p."Cellid", p."ProductCode", p."Quantity", p."UpdateDate"
+FROM products AS p
+WHERE p."Cellid" = @__request_CellId_0
+ORDER BY p."Id"Executed DbCommand (47ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = Decimal), @p1='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = Decimal), @p7='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+UPDATE products SET "Quantity" = @p0, "UpdateDate" = @p1
+WHERE "Id" = @p2;
+INSERT INTO products ("Id", "Cellid", "ProductCode", "Quantity", "UpdateDate")
+VALUES (@p3, @p4, @p5, @p6, @p7);Executed DbCommand (3ms) [Parameters=[@__request_CellId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c."Id", c."Code", c."Position", c."Shelf", c."StandId", c."Type"
+FROM cells AS c
+WHERE c."Id" = @__request_CellId_0
+LIMIT 1Executed DbCommand (2ms) [Parameters=[@__Cell_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Code", s."DepartmentId", s."Position", s."Side", s."Size", s."StoreId"
+FROM stands AS s
+WHERE s."Id" = @__Cell_StandId_0
+LIMIT 1Executed DbCommand (2ms) [Parameters=[@__Stand_StoreId_0='?' (DbType = Int32), @__Stand_DepartmentId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."StoreId", s."DepartmentId", s."Scheme"
+FROM "storeDepartments" AS s
+WHERE (s."StoreId" = @__Stand_StoreId_0) AND (s."DepartmentId" = @__Stand_DepartmentId_1)
+LIMIT 1Executed DbCommand (2ms) [Parameters=[@__request_CellId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT p."Id", p."Cellid", p."ProductCode", p."Quantity", p."UpdateDate"
+FROM products AS p
+WHERE p."Cellid" = @__request_CellId_0
+ORDER BY p."Id"Executed DbCommand (2ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = Decimal), @p1='?' (DbType = DateTime), @p5='?' (DbType = Int32), @p3='?' (DbType = Decimal), @p4='?' (DbType = DateTime)], CommandType='Text', CommandTimeout='30']
+UPDATE products SET "Quantity" = @p0, "UpdateDate" = @p1
+WHERE "Id" = @p2;
+UPDATE products SET "Quantity" = @p3, "UpdateDate" = @p4
+WHERE "Id" = @p5;Executed DbCommand (3ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Code", s."DepartmentId", s."Position", s."Side", s."Size", s."StoreId"
+FROM stands AS s
+WHERE s."Id" = @__request_StandId_0
+LIMIT 1Executed DbCommand (2ms) [Parameters=[@__Stand_StoreId_0='?' (DbType = Int32), @__Stand_DepartmentId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."StoreId", s."DepartmentId", s."Scheme"
+FROM "storeDepartments" AS s
+WHERE (s."StoreId" = @__Stand_StoreId_0) AND (s."DepartmentId" = @__Stand_DepartmentId_1)
+LIMIT 1Executed DbCommand (2ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c."Id", c."Code", c."Position", c."Shelf", c."StandId", c."Type"
+FROM cells AS c
+WHERE c."StandId" = @__request_StandId_0
+ORDER BY c."Id"Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?' (DbType = Int32), @p3='?', @p4='?' (DbType = Int32), @p5='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+INSERT INTO cells ("Id", "Code", "Position", "Shelf", "StandId", "Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);Executed DbCommand (5ms) [Parameters=[@__request_CellId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c."Id", c."Code", c."Position", c."Shelf", c."StandId", c."Type"
+FROM cells AS c
+WHERE c."Id" = @__request_CellId_0
+LIMIT 1Executed DbCommand (3ms) [Parameters=[@__Cell_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Code", s."DepartmentId", s."Position", s."Side", s."Size", s."StoreId"
+FROM stands AS s
+WHERE s."Id" = @__Cell_StandId_0
+LIMIT 1Executed DbCommand (3ms) [Parameters=[@__Stand_StoreId_0='?' (DbType = Int32), @__Stand_DepartmentId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."StoreId", s."DepartmentId", s."Scheme"
+FROM "storeDepartments" AS s
+WHERE (s."StoreId" = @__Stand_StoreId_0) AND (s."DepartmentId" = @__Stand_DepartmentId_1)
+LIMIT 1Executed DbCommand (4ms) [Parameters=[@__request_CellId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT p."Id", p."Cellid", p."ProductCode", p."Quantity", p."UpdateDate"
+FROM products AS p
+WHERE p."Cellid" = @__request_CellId_0
+ORDER BY p."Id"Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Executed DbCommand (21ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Code", s."DepartmentId", s."Position", s."Side", s."Size", s."StoreId"
+FROM stands AS s
+WHERE s."Id" = @__request_StandId_0
+LIMIT 1Executed DbCommand (2ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Code", s."DepartmentId", s."Position", s."Side", s."Size", s."StoreId"
+FROM stands AS s
+WHERE s."Id" = @__request_StandId_0
+LIMIT 1Executed DbCommand (5ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c."Id", c."Code", c."Position", c."Shelf", c."StandId", c."Type"
+FROM cells AS c
+WHERE c."StandId" = @__request_StandId_0Executed DbCommand (9ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Code", s."DepartmentId", s."Position", s."Side", s."Size", s."StoreId"
+FROM stands AS s
+WHERE s."Id" = @__request_StandId_0
+LIMIT 1Executed DbCommand (5ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c."Id", c."Code", c."Position", c."Shelf", c."StandId", c."Type"
+FROM cells AS c
+WHERE c."StandId" = @__request_StandId_0Entity Framework Core 5.0.6 initialized 'ApplicationContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Training.Infrastructure Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Entity Framework Core 5.0.6 initialized 'ApplicationContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Training.Infrastructure Executed DbCommand (23ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Code", s."DepartmentId", s."Position", s."Side", s."Size", s."StoreId"
+FROM stands AS s
+WHERE s."Id" = @__request_StandId_0
+LIMIT 1Executed DbCommand (2ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c."Id", c."Code", c."Position", c."Shelf", c."StandId", c."Type"
+FROM cells AS c
+WHERE c."StandId" = @__request_StandId_0Entity Framework Core 5.0.6 initialized 'ApplicationContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Training.Infrastructure Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";Entity Framework Core 5.0.6 initialized 'ApplicationContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: MigrationsAssembly=Training.Infrastructure Executed DbCommand (8ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT s."Id", s."Code", s."DepartmentId", s."Position", s."Side", s."Size", s."StoreId"
+FROM stands AS s
+WHERE s."Id" = @__request_StandId_0
+LIMIT 1Executed DbCommand (14ms) [Parameters=[@__request_StandId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT c."Id", c."Code", c."Position", c."Shelf", c."StandId", c."Type"
+FROM cells AS c
+WHERE c."StandId" = @__request_StandId_0

@@ -14,11 +14,9 @@ namespace TrainingProject.tables
         public string Shelf { get; set; }
         public CellType Type { get; set; }
 
-
         public int StandId { get; set; }
         public Stand Stand { get; set; }
 
         public List<Product> Products { get; set; }
-
     }
 }
