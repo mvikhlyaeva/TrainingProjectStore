@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using TrainingProject.Application.Commands.Products.DeleteProductCommand;
 using TrainingProject.Application.Commands.Products.PostProductCommand;
 using TrainingProject.Application.Commands.Products.PutProductCommand;
 using TrainingProject.tables;
@@ -36,10 +37,17 @@ namespace TrainingProject.Controllers
         }
 
         [HttpPut("products/{id}")]
-        [ProducesResponseType(typeof(List<Product>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         public async Task<ProductDomainModelForGet> ChangeQuantityOfProducts(int id, decimal quantity, CancellationToken cancellationToken)
         {
             return await _mediator.Send(new PutProductCommandQuery(id, quantity), cancellationToken);
+        }
+
+        [HttpDelete("products/{id}")]
+        [ProducesResponseType(typeof(List<Product>), StatusCodes.Status200OK)]
+        public async Task<Product> DeleteProduct(int id, CancellationToken cancellationToken)
+        {
+            return await _mediator.Send(new DeleteProductCommandQuery(id), cancellationToken);
         }
     }
 }

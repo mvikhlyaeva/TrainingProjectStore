@@ -18,6 +18,8 @@ namespace TrainingProject
                 .UseNpgsql("Host=localhost;Port=5433;Database=usersdb;Username=postgres;Password=Qwert6789",
                     builder => builder.MigrationsAssembly(typeof(ApplicationContext).Assembly.GetName().Name))); //Πετλεκρθÿ
 
+            services.AddCors();
+
             //services.AddDbContext<ApplicationContext>(options => options
             //  .UseLoggerFactory(loggerFactory);
 
@@ -34,6 +36,11 @@ namespace TrainingProject
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationContext context)
         {
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
