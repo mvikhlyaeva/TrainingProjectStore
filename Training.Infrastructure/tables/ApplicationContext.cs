@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace TrainingProject.tables
 {
@@ -13,11 +14,6 @@ namespace TrainingProject.tables
         public DbSet<Product> products { get; set; }
         public DbSet<Stand> stands { get; set; }
         public DbSet<StoreDepartment> storeDepartments { get; set; }
-        /*public ApplicationContext()
-        {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
-        }*/
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -32,12 +28,6 @@ namespace TrainingProject.tables
 
             base.OnModelCreating(modelBuilder);
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    //optionsBuilder.UseNpgsql("Host=localhost;Port=5433;Database=usersdb;Username=postgres;Password=Qwert6789");
-        //    optionsBuilder.UseLoggerFactory(MyLoggerFactory);
-        //}
 
         //// static readonly ILoggerFactory loggerFactory = new LoggerFactory().AddConsole(LogLevel.Information);
 

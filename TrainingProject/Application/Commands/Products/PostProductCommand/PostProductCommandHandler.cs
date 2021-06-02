@@ -26,11 +26,13 @@ namespace TrainingProject.Application.Commands.Products.PostProductCommand
 
         public async Task<List<ProductDomainModelForGet>> Handle(PostProductCommandQuery request, CancellationToken cancellationToken)
         {
-            var Cell = await _context.cells.FirstOrDefaultAsync(cell => cell.Id == request.CellId, cancellationToken);
-            if (Cell == null)
+            var cell = await _context.cells.FirstOrDefaultAsync(cell => cell.Id == request.CellId, cancellationToken);
+            if (cell == null)
                 throw new ProductNoForeignKeyException();
-            var Stand = await _context.stands.FirstOrDefaultAsync(st => st.Id == Cell.StandId, cancellationToken);
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == Stand.StoreId && sd.DepartmentId == Stand.DepartmentId, cancellationToken);
+            var stand = await _context.stands.FirstOrDefaultAsync(st => st.Id == cell.StandId, cancellationToken);
+            var storeDepartment = await _context.storeDepartments
+                .FirstOrDefaultAsync(sd => sd.StoreId == stand.StoreId && sd.DepartmentId == stand.DepartmentId, cancellationToken);
+
             List<Product> resultProducts = new List<Product>();
 
             /*int countId;
@@ -43,7 +45,7 @@ namespace TrainingProject.Application.Commands.Products.PostProductCommand
             {
                 if (productsdb.FirstOrDefault(u => u.Id == Prod.Id) != null)
                 {
-                    if (!(StoreDepartment.Scheme == SchemeType.ClientBackAddress && Cell.Type == CellType.Client))
+                    if (!(storeDepartment.Scheme == SchemeType.ClientBackAddress && cell.Type == CellType.Client))
                     {
                         productsdb.FirstOrDefault(u => u.Id == Prod.Id).Quantity += Prod.Quantity;
                     }
@@ -57,7 +59,7 @@ namespace TrainingProject.Application.Commands.Products.PostProductCommand
                     //addProduct.Id = countId;
                     //countId++;
                     addProduct.UpdateDate = DateTime.Now;
-                    if (StoreDepartment.Scheme == SchemeType.ClientBackAddress && Cell.Type == CellType.Client)
+                    if (storeDepartment.Scheme == SchemeType.ClientBackAddress && cell.Type == CellType.Client)
                     {
                         addProduct.Quantity = null;
                     }

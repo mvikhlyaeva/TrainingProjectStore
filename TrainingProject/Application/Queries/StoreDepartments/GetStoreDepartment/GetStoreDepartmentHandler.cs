@@ -8,8 +8,6 @@ using TrainingProject.Core;
 using TrainingProject.Domain;
 using TrainingProject.tables;
 
-
-
 namespace TrainingProject.Application.Queries.StoreDepartments.GetStoreDepartment
 {
     public class GetStoreDepartmentHandler : IRequestHandler<GetStoreDepartmentQuery, StoreDepartmentDomainModel>
@@ -22,14 +20,14 @@ namespace TrainingProject.Application.Queries.StoreDepartments.GetStoreDepartmen
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<StoreDepartmentDomainModel> Handle(GetStoreDepartmentQuery request, CancellationToken cancellationToken)
         {
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
+            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
 
-            if (StoreDepartment == null)
+            if (storeDepartment == null)
                 throw new StoreDepartmentNotFoundException();
-            return _mapper.Map<StoreDepartmentDomainModel>(StoreDepartment);
-
+            return _mapper.Map<StoreDepartmentDomainModel>(storeDepartment);
         }
     }
 }

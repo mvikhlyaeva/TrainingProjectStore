@@ -36,10 +36,10 @@ namespace TrainingProject
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationContext context)
         {
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            //app.UseDefaultFiles();
+            //app.UseStaticFiles();
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200"));
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             if (env.IsDevelopment())
             {

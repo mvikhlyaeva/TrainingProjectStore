@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace TrainingProject.Core.Middlwares
 {
     public class ExceptionCatchMiddleware
@@ -28,11 +27,8 @@ namespace TrainingProject.Core.Middlwares
             {
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
                 context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new ExceptionModel { Message =e.Message }));
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(new ExceptionModel { Message = e.Message }));
             }
         }
-
     }
-
-
 }

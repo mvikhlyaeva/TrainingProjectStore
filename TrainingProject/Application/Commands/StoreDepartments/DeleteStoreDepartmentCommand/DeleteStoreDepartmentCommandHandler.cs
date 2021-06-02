@@ -19,16 +19,16 @@ namespace TrainingProject.Application.Queries.StoreDepartments.DeleteStoreDepart
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<StoreDepartmentDomainModel> Handle(DeleteStoreDepartmentCommandQuery request, CancellationToken cancellationToken)
         {
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
-            if (StoreDepartment == null)
+            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
+            if (storeDepartment == null)
                 throw new StoreDepartmentNotFoundException();
 
-            _context.storeDepartments.Remove(StoreDepartment);
+            _context.storeDepartments.Remove(storeDepartment);
             await _context.SaveChangesAsync(cancellationToken);
-            return _mapper.Map<StoreDepartmentDomainModel>(StoreDepartment);
-
+            return _mapper.Map<StoreDepartmentDomainModel>(storeDepartment);
         }
     }
 }

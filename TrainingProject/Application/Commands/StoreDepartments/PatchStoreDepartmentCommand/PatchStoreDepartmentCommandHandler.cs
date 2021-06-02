@@ -18,18 +18,16 @@ namespace TrainingProject.Application.Queries.StoreDepartments.PatchStoreDepartm
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<SchemeType> Handle(PatchStoreDepartmentCommandQuery request, CancellationToken cancellationToken)
         {
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
-            if (StoreDepartment == null)
+            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
+            if (storeDepartment == null)
                 throw new StoreDepartmentNotFoundException();
 
-            StoreDepartment.Scheme = request.Scheme;
+            storeDepartment.Scheme = request.Scheme;
             await _context.SaveChangesAsync(cancellationToken);
-            return StoreDepartment.Scheme;
-
-
+            return storeDepartment.Scheme;
         }
-
     }
 }

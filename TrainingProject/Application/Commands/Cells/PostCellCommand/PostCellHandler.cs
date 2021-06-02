@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -16,26 +17,29 @@ namespace TrainingProject.Application.Queries.Cells.PostCell
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
+        private readonly ILogger<PostCellHandler> _logger;
 
-        public PostCellHandler(ApplicationContext context, IMapper mapper)
+        public PostCellHandler(ApplicationContext context, IMapper mapper, ILogger<PostCellHandler> logger)
         {
             _context = context;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<List<CellDomainModelForPost>> Handle(PostCellQuery request, CancellationToken cancellationToken)
         {
-            var Stand = await _context.stands.FirstOrDefaultAsync(st => st.Id == request.StandId, cancellationToken);
-            if (Stand == null)
+            //_logger.LogInformation(_context);
+            var stand = await _context.stands.FirstOrDefaultAsync(st => st.Id == request.StandId, cancellationToken);
+            if (stand == null)
                 throw new CellNoForeignKeyException();
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == Stand.StoreId && sd.DepartmentId == Stand.DepartmentId, cancellationToken);
+            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == stand.StoreId && sd.DepartmentId == stand.DepartmentId, cancellationToken);
 
             var cellsdb = await _context.cells.Where(u => u.StandId == request.StandId).OrderBy(u => u.Id).ToListAsync(cancellationToken);
             foreach (CellDomainModelForPost cell in request.Cells)
             {
                 if (cellsdb.FirstOrDefault(u => u.Id == cell.Id) != null)
                     throw new CellRepeatKeyException();
-                if (StoreDepartment.Scheme == SchemeType.OnlyBack && cell.Type == CellType.Client) continue;
+                if (storeDepartment.Scheme == SchemeType.OnlyBack && cell.Type == CellType.Client) continue;
                 Cell cellAdd = _mapper.Map<Cell>(cell);
                 cellAdd.StandId = request.StandId;
                 cellsdb.Add(_mapper.Map<Cell>(cell));

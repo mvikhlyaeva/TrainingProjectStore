@@ -19,16 +19,16 @@ namespace TrainingProject.Application.Queries.StoreDepartments.PostStoreDepartme
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<StoreDepartmentDomainModel> Handle(PostStoreDepartmentCommandQuery request, CancellationToken cancellationToken)
         {
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StD.StoreId && sd.DepartmentId == request.StD.DepartmentId, cancellationToken);
-            if (StoreDepartment != null)
+            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StD.StoreId && sd.DepartmentId == request.StD.DepartmentId, cancellationToken);
+            if (storeDepartment != null)
                 throw new StoreDepartmentRepeatKeyException();
 
             _context.storeDepartments.Add(_mapper.Map<StoreDepartment>(request.StD));
             await _context.SaveChangesAsync(cancellationToken);
             return request.StD;
         }
-
     }
 }

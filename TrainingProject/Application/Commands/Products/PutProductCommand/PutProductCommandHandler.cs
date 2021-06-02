@@ -2,8 +2,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TrainingProject.Core;
@@ -26,17 +24,18 @@ namespace TrainingProject.Application.Commands.Products.PutProductCommand
 
         public async Task<ProductDomainModelForGet> Handle(PutProductCommandQuery request, CancellationToken cancellationToken)
         {
-            var Product = await _context.products.FirstOrDefaultAsync(pr => pr.Id == request.Id, cancellationToken);
-            if (Product == null)
+            var product = await _context.products.FirstOrDefaultAsync(pr => pr.Id == request.Id, cancellationToken);
+            if (product == null)
                 throw new ProductNotFoundException();
-            var Cell = await _context.cells.FirstOrDefaultAsync(cell => cell.Id == Product.CellId, cancellationToken);
-            var Stand = await _context.stands.FirstOrDefaultAsync(st => st.Id == Cell.StandId, cancellationToken);
-            var StoreDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == Stand.StoreId && sd.DepartmentId == Stand.DepartmentId, cancellationToken);
+            var cell = await _context.cells.FirstOrDefaultAsync(c => c.Id == product.CellId, cancellationToken);
+            var stand = await _context.stands.FirstOrDefaultAsync(st => st.Id == cell.StandId, cancellationToken);
+            var storeDepartment = await _context.storeDepartments
+                .FirstOrDefaultAsync(sd => sd.StoreId == stand.StoreId && sd.DepartmentId == stand.DepartmentId, cancellationToken);
 
-            if (!(StoreDepartment.Scheme == SchemeType.ClientBackAddress && Cell.Type == CellType.Client)) Product.Quantity = request.Quantity;
-            Product.UpdateDate = DateTime.Now;
+            if (!(storeDepartment.Scheme == SchemeType.ClientBackAddress && cell.Type == CellType.Client)) product.Quantity = request.Quantity;
+            product.UpdateDate = DateTime.Now;
             await _context.SaveChangesAsync(cancellationToken);
-            return _mapper.Map<ProductDomainModelForGet>(Product);
+            return _mapper.Map<ProductDomainModelForGet>(product);
         }
     }
 }
