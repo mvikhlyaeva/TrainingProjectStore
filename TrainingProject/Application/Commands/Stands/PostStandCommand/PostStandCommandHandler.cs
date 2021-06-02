@@ -24,11 +24,15 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
 
         public async Task<List<StandDomainModelForPost>> Handle(PostStandCommandQuery request, CancellationToken cancellationToken)
         {
-            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
+            var storeDepartment = await _context.storeDepartments
+                .FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
             if (storeDepartment == null)
                 throw new StandNoForeignKeyException();
 
-            var standsdb = await _context.stands.Where(u => u.StoreId == request.StoreId && u.DepartmentId == request.DepartmentId).OrderBy(u => u.Id).ToListAsync(cancellationToken);
+            var standsdb = await _context.stands
+                .Where(u => u.StoreId == request.StoreId && u.DepartmentId == request.DepartmentId)
+                .OrderBy(u => u.Id)
+                .ToListAsync(cancellationToken);
 
             var stands = request.Stands.OrderBy(st => st?.Id).ToList();
 
@@ -53,14 +57,24 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
                 else { j++; }
             }
 
-            while (i < standsdb.Count()) { _context.stands.Remove(standsdb[i]); standsdb.Remove(standsdb[i]); i++; }
+            while (i < standsdb.Count())
+            {
+                _context.stands.Remove(standsdb[i]);
+                standsdb.Remove(standsdb[i]);
+                i++;
+            }
+
             await _context.SaveChangesAsync(cancellationToken);
             j = 0;
             var standsdbAll = await _context.stands.OrderBy(u => u.Id).ToListAsync(cancellationToken);
             while (j < stands.Count() && stands[j].Id == null)
             {
                 Stand stand = new Stand();
-                if (standsdbAll.Count() > 0) { stands[j].Id = standsdbAll[standsdbAll.Count() - 1].Id + j + 1; }
+
+                if (standsdbAll.Count() > 0)
+                {
+                    stands[j].Id = standsdbAll[standsdbAll.Count() - 1].Id + j + 1;
+                }
                 else stands[j].Id = j + 1;
                 stand = _mapper.Map<Stand>(stands[j]);
 

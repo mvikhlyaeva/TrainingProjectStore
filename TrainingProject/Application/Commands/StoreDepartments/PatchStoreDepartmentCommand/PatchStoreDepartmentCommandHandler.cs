@@ -21,7 +21,8 @@ namespace TrainingProject.Application.Queries.StoreDepartments.PatchStoreDepartm
 
         public async Task<SchemeType> Handle(PatchStoreDepartmentCommandQuery request, CancellationToken cancellationToken)
         {
-            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
+            var storeDepartment = await _context.storeDepartments
+                .FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
             if (storeDepartment == null)
                 throw new StoreDepartmentNotFoundException();
 

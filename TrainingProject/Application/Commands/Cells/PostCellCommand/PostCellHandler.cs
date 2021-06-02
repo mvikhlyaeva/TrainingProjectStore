@@ -32,7 +32,8 @@ namespace TrainingProject.Application.Queries.Cells.PostCell
             var stand = await _context.stands.FirstOrDefaultAsync(st => st.Id == request.StandId, cancellationToken);
             if (stand == null)
                 throw new CellNoForeignKeyException();
-            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == stand.StoreId && sd.DepartmentId == stand.DepartmentId, cancellationToken);
+            var storeDepartment = await _context.storeDepartments
+                .FirstOrDefaultAsync(sd => sd.StoreId == stand.StoreId && sd.DepartmentId == stand.DepartmentId, cancellationToken);
 
             var cellsdb = await _context.cells.Where(u => u.StandId == request.StandId).OrderBy(u => u.Id).ToListAsync(cancellationToken);
             foreach (CellDomainModelForPost cell in request.Cells)

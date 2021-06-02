@@ -22,7 +22,8 @@ namespace TrainingProject.Application.Queries.StoreDepartments.GetStoreDepartmen
 
         public async Task<StoreDepartmentDomainModel> Handle(GetStoreDepartmentQuery request, CancellationToken cancellationToken)
         {
-            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
+            var storeDepartment = await _context.storeDepartments
+                .FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
 
             if (storeDepartment == null)
                 throw new StoreDepartmentNotFoundException();

@@ -22,7 +22,8 @@ namespace TrainingProject.Application.Queries.StoreDepartments.PostStoreDepartme
 
         public async Task<StoreDepartmentDomainModel> Handle(PostStoreDepartmentCommandQuery request, CancellationToken cancellationToken)
         {
-            var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StD.StoreId && sd.DepartmentId == request.StD.DepartmentId, cancellationToken);
+            var storeDepartment = await _context.storeDepartments
+                .FirstOrDefaultAsync(sd => sd.StoreId == request.StD.StoreId && sd.DepartmentId == request.StD.DepartmentId, cancellationToken);
             if (storeDepartment != null)
                 throw new StoreDepartmentRepeatKeyException();
 

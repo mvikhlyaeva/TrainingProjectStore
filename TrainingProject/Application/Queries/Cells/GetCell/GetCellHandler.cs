@@ -27,6 +27,7 @@ namespace TrainingProject.Application.Queries.Cells.GetCell
             var stand = await _context.stands.FirstOrDefaultAsync(st => st.Id == request.StandId, cancellationToken);
             if (stand == null)
                 throw new CellNoForeignKeyException();
+
             var cells = await _context.cells.Where(cell => cell.StandId == request.StandId).ToListAsync(cancellationToken);
             return _mapper.Map<List<CellDomainModelForPost>>(cells);
         }

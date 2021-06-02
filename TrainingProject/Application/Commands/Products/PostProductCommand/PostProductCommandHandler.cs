@@ -40,7 +40,11 @@ namespace TrainingProject.Application.Commands.Products.PostProductCommand
             if (proddb.Count() < 1) countId = 1;
             else countId = proddb[0].Id + 1;*/
 
-            var productsdb = await _context.products.Where(u => u.CellId == request.CellId).OrderBy(u => u.Id).ToListAsync(cancellationToken);
+            var productsdb = await _context.products
+                .Where(u => u.CellId == request.CellId)
+                .OrderBy(u => u.Id)
+                .ToListAsync(cancellationToken);
+
             foreach (ProductDomainModelForPost Prod in request.Products)
             {
                 if (productsdb.FirstOrDefault(u => u.Id == Prod.Id) != null)
@@ -50,7 +54,6 @@ namespace TrainingProject.Application.Commands.Products.PostProductCommand
                         productsdb.FirstOrDefault(u => u.Id == Prod.Id).Quantity += Prod.Quantity;
                     }
                     productsdb.FirstOrDefault(u => u.Id == Prod.Id).UpdateDate = DateTime.Now;
-                    //resultProducts.Add(productsdb.FirstOrDefault(u => u.Id == Prod.Id));
                 }
                 else
                 {

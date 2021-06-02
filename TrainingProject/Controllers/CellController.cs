@@ -18,14 +18,10 @@ namespace TrainingProject.Controllers
     [Produces("application/json")]
     public class CellController : Controller
     {
-        private readonly ApplicationContext _context;
-        private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public CellController(ApplicationContext context, IMapper mapper, IMediator mediator)
+        public CellController(IMediator mediator)
         {
-            _context = context;
-            _mapper = mapper;
             _mediator = mediator;
         }
 

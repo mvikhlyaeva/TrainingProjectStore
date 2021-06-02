@@ -19,14 +19,10 @@ namespace TrainingProject.Controllers
     [Produces("application/json")]
     public class StoreDepartmentController : Controller
     {
-        private readonly ApplicationContext _context;
-        private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public StoreDepartmentController(ApplicationContext context, IMapper mapper, IMediator mediator)
+        public StoreDepartmentController(IMediator mediator)
         {
-            _context = context;
-            _mapper = mapper;
             _mediator = mediator;
         }
 

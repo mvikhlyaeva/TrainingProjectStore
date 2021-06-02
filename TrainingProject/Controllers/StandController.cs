@@ -18,24 +18,11 @@ namespace TrainingProject.Controllers
     [Produces("application/json")]
     public class StandController : Controller
     {
-        private readonly ApplicationContext _context;
-        private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public StandController(ApplicationContext context, IMapper mapper, IMediator mediator)
+        public StandController(IMediator mediator)
         {
-            _context = context;
-            _mapper = mapper;
             _mediator = mediator;
-        }
-
-        [HttpPost("Stand")]
-        [ProducesResponseType(typeof(StandDomainModelForGet), StatusCodes.Status200OK)]
-        public async Task<IActionResult> AddStand([FromBody] StandDomainModelForGet Stand, CancellationToken cancellationToken)
-        {
-            _context.stands.Add(_mapper.Map<Stand>(Stand));
-            await _context.SaveChangesAsync(cancellationToken);
-            return Ok(Stand);
         }
 
         [HttpGet("stands")]
