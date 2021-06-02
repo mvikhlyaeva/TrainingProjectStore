@@ -4,7 +4,6 @@ namespace TrainingProject.tables
 {
     public class Stand
     {
-
         public int Id { get; set; }
         public string Code { get; set; }
         public int Size { get; set; }

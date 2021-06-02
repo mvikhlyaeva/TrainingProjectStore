@@ -2,9 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TrainingProject.Application.Queries.Stands.GetStand;
@@ -35,7 +33,6 @@ namespace TrainingProject.Controllers
         [ProducesResponseType(typeof(StandDomainModelForGet), StatusCodes.Status200OK)]
         public async Task<IActionResult> AddStand([FromBody] StandDomainModelForGet Stand, CancellationToken cancellationToken)
         {
-
             _context.stands.Add(_mapper.Map<Stand>(Stand));
             await _context.SaveChangesAsync(cancellationToken);
             return Ok(Stand);
@@ -48,15 +45,11 @@ namespace TrainingProject.Controllers
             return await _mediator.Send(new GetStandQuery(storeId, departmentId), cancellationToken);
         }
 
-
         [HttpPost("stands")]
         [ProducesResponseType(typeof(StandDomainModel), StatusCodes.Status200OK)]
         public async Task<List<StandDomainModelForPost>> AddUpDelStands([FromQuery] int storeId, int departmentId, List<StandDomainModelForPost> stands, CancellationToken cancellationToken)
         {
-
             return await _mediator.Send(new PostStandCommandQuery(storeId, departmentId, stands), cancellationToken);
         }
-
-
     }
 }

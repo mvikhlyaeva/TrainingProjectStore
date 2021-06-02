@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TrainingProject.Core;
 using TrainingProject.Core.Exceptions.StandExceptons;
 using TrainingProject.tables;
 using TrainProject.Domain.DomainModels;

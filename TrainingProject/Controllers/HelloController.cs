@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TrainingProject.Core;
 
 namespace TrainingProject.Controllers
@@ -22,6 +18,5 @@ namespace TrainingProject.Controllers
         {
             return x * x;
         }
-
     }
 }

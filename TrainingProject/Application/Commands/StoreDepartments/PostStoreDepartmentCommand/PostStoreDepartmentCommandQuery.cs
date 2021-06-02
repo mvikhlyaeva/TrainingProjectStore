@@ -5,12 +5,11 @@ namespace TrainingProject.Application.Queries.StoreDepartments.PostStoreDepartme
 {
     public class PostStoreDepartmentCommandQuery : IRequest<StoreDepartmentDomainModel>
     {
-
         public StoreDepartmentDomainModel StD { get; }
+
         public PostStoreDepartmentCommandQuery(StoreDepartmentDomainModel SD)
         {
             StD = SD;
         }
-
     }
 }

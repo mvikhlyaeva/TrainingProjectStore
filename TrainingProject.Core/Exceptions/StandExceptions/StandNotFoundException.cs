@@ -7,7 +7,6 @@ namespace TrainingProject.Core.Exceptions.StandExceptons
         public StandNotFoundException(string message = ExceptionMessagesHelper.notFound)
              : base(message)
         {
-
         }
     }
 }

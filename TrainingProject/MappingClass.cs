@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using System.Collections.Generic;
-using System.Linq;
 using TrainingProject.Domain;
 using TrainingProject.tables;
 using TrainProject.Domain.DomainModels;

@@ -1,9 +1,5 @@
 ﻿using MediatR;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TrainingProject.tables;
 using TrainProject.Domain.DomainModels.ProductDomainModel;
 
 namespace TrainingProject.Application.Commands.Products.PostProductCommand

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -22,6 +21,7 @@ namespace TrainingProject.Application.Queries.Stands.GetStand
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<List<StandDomainModelForGet>> Handle(GetStandQuery request, CancellationToken cancellationToken)
         {
             var storeDepartment = await _context.storeDepartments.FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
@@ -29,7 +29,6 @@ namespace TrainingProject.Application.Queries.Stands.GetStand
                 throw new StandNoForeignKeyException();
             var stands = await _context.stands.Where(st => st.StoreId == request.StoreId && st.DepartmentId == request.DepartmentId).ToListAsync(cancellationToken);
             return _mapper.Map<List<StandDomainModelForGet>>(stands);
-
         }
     }
 }

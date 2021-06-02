@@ -1,5 +1,4 @@
-﻿
-namespace TrainingProject.Domain
+﻿namespace TrainingProject.Domain
 {
     public class StandDomainModel
     {
@@ -10,7 +9,5 @@ namespace TrainingProject.Domain
         public int Side { get; set; }
         public int StoreId { get; set; }
         public int DepartmentId { get; set; }
-
-
     }
 }

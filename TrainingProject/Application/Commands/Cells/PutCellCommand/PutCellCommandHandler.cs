@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TrainingProject.Core.Exceptions.CellException;
 using TrainingProject.tables;
-using TrainProject.Domain.DomainModels;
 
 namespace TrainingProject.Application.Queries.Cells.PutCell
 {
@@ -22,6 +18,7 @@ namespace TrainingProject.Application.Queries.Cells.PutCell
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<Cell> Handle(PutCellCommandQuery request, CancellationToken cancellationToken)
         {
             Cell celldb = await _context.cells.FirstOrDefaultAsync(cells => cells.Id == request.CellId, cancellationToken);
@@ -33,7 +30,6 @@ namespace TrainingProject.Application.Queries.Cells.PutCell
             celldb.Type = request.Cell.Type;
             await _context.SaveChangesAsync(cancellationToken);
             return celldb;
-
         }
     }
 }

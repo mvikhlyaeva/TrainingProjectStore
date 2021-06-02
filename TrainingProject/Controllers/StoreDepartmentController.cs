@@ -14,7 +14,6 @@ using TrainingProject.tables;
 
 namespace TrainingProject.Controllers
 {
-
     [Route("api")]
     [ApiController]
     [Produces("application/json")]
@@ -45,7 +44,6 @@ namespace TrainingProject.Controllers
             return await _mediator.Send(new PatchStoreDepartmentCommandQuery(storeId, departmentId, scheme), cancellationToken);
         }
 
-
         [HttpGet("store/{storeId}/department/{departmentId}")]
         [ProducesResponseType(typeof(StoreDepartmentDomainModel), StatusCodes.Status200OK)]
         public async Task<StoreDepartmentDomainModel> GetStoreDepartments(int storeId, int departmentId, CancellationToken cancellationToken)
@@ -59,6 +57,5 @@ namespace TrainingProject.Controllers
         {
             return await _mediator.Send(new DeleteStoreDepartmentCommandQuery(storeId, departmentId), cancellationToken);
         }
-
     }
 }

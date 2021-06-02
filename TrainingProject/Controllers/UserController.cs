@@ -1,17 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-
-/*namespace TrainingProject.Controllers
+﻿/*namespace TrainingProject.Controllers
 {
     [Route("api/mapper")]
     [ApiController]
     public class UserController : Controller
     {
-
         // Create a field to store the mapper object
         private readonly IMapper _mapper;
 
@@ -32,7 +24,5 @@ using AutoMapper;
             var man = _mapper.Map<UserDto>(user);
             return man;
         }
-
-
     }
 }*/

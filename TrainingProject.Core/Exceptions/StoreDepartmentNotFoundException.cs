@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TrainingProject.Core
 {
@@ -11,7 +7,6 @@ namespace TrainingProject.Core
         public StoreDepartmentNotFoundException(string message = ExceptionMessagesHelper.notFound)
              : base(message)
         {
-
         }
     }
 }
