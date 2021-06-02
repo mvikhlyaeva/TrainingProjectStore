@@ -5,6 +5,7 @@
 
 *.cache
 *.dll
+log.txt
 
 # User-specific files
 *.rsuser
