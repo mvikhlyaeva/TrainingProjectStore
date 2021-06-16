@@ -2,6 +2,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TrainingProject.Application.Queries.StoreDepartments.DeleteStoreDepartment;
@@ -20,13 +23,25 @@ namespace TrainingProject.Controllers
     public class StoreDepartmentController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
+        private readonly ApplicationContext _context;
 
-        public StoreDepartmentController(IMediator mediator)
+        public StoreDepartmentController(ApplicationContext context, IMapper mapper, IMediator mediator)
         {
+            _mapper = mapper;
             _mediator = mediator;
+            _context = context;
         }
 
-        [HttpPost("StoreDeparments")]
+        [HttpGet("")]
+        [ProducesResponseType(typeof(List<StoreDepartmentDomainModel>), StatusCodes.Status200OK)]
+        public async Task<List<StoreDepartmentDomainModel>> GetAllStoreDepartments()
+        {
+            var storeDepartments = await _context.storeDepartments.OrderBy(sd => sd.StoreId).ThenBy(sd => sd.DepartmentId).ToListAsync();
+            return _mapper.Map<List<StoreDepartmentDomainModel>>(storeDepartments);
+        }
+
+        [HttpPost("storeDepartments")]
         [ProducesResponseType(typeof(StoreDepartmentDomainModel), StatusCodes.Status200OK)]
         public async Task<StoreDepartmentDomainModel> AddStoreDepartments([FromBody] StoreDepartmentDomainModel SD, CancellationToken cancellationToken)
         {
@@ -35,7 +50,7 @@ namespace TrainingProject.Controllers
 
         [HttpPatch("store/{storeId}/department/{departmentId}")]
         [ProducesResponseType(typeof(SchemeType), StatusCodes.Status200OK)]
-        public async Task<SchemeType> ChangeStoreDepartments(int storeId, int departmentId, SchemeType scheme, CancellationToken cancellationToken)
+        public async Task<SchemeType> ChangeStoreDepartments(int storeId, int departmentId, [FromBody] SchemeType scheme, CancellationToken cancellationToken)
         {
             return await _mediator.Send(new PatchStoreDepartmentCommandQuery(storeId, departmentId, scheme), cancellationToken);
         }

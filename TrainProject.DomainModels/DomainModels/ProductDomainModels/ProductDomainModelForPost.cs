@@ -2,8 +2,9 @@
 {
     public class ProductDomainModelForPost
     {
-        public int Id { get; set; }
+        // public int Id { get; set; }
         public string ProductCode { get; set; }
+
         public decimal Quantity { get; set; }
     }
 }

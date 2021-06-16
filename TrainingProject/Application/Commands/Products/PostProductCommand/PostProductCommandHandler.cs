@@ -35,32 +35,30 @@ namespace TrainingProject.Application.Commands.Products.PostProductCommand
 
             List<Product> resultProducts = new List<Product>();
 
-            /*int countId;
+            int countId;
             var proddb = await _context.products.OrderByDescending(u => u.Id).ToListAsync(cancellationToken);
             if (proddb.Count() < 1) countId = 1;
-            else countId = proddb[0].Id + 1;*/
+            else countId = proddb[0].Id + 1;
 
-            var productsdb = await _context.products
-                .Where(u => u.CellId == request.CellId)
-                .OrderBy(u => u.Id)
-                .ToListAsync(cancellationToken);
+            var productsdb = proddb.Where(u => u.CellId == request.CellId);
 
             foreach (ProductDomainModelForPost Prod in request.Products)
             {
-                if (productsdb.FirstOrDefault(u => u.Id == Prod.Id) != null)
+                var productdb = productsdb.FirstOrDefault(u => u.ProductCode == Prod.ProductCode);
+                if (productdb != null)
                 {
                     if (!(storeDepartment.Scheme == SchemeType.ClientBackAddress && cell.Type == CellType.Client))
                     {
-                        productsdb.FirstOrDefault(u => u.Id == Prod.Id).Quantity += Prod.Quantity;
+                        productdb.Quantity += Prod.Quantity;
                     }
-                    productsdb.FirstOrDefault(u => u.Id == Prod.Id).UpdateDate = DateTime.Now;
+                    productdb.UpdateDate = DateTime.Now;
                 }
                 else
                 {
                     var addProduct = _mapper.Map<Product>(Prod);
                     addProduct.CellId = request.CellId;
-                    //addProduct.Id = countId;
-                    //countId++;
+                    addProduct.Id = countId;
+                    countId++;
                     addProduct.UpdateDate = DateTime.Now;
                     if (storeDepartment.Scheme == SchemeType.ClientBackAddress && cell.Type == CellType.Client)
                     {

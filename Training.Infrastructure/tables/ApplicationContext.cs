@@ -22,16 +22,5 @@ namespace TrainingProject.tables
 
             base.OnModelCreating(modelBuilder);
         }
-
-        //// static readonly ILoggerFactory loggerFactory = new LoggerFactory().AddConsole(LogLevel.Information);
-
-        //public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder =>
-        //{
-        //    builder.AddProvider(new MyLoggerProvider());    // указываем наш провайдер логгирования
-        //    //    builder.AddFilter((category, level) => category == DbLoggerCategory.Database.Command.Name
-        //    //                && level == LogLevel.Information)
-        //    //.AddProvider(new MyLoggerProvider());
-        //    //builder.AddConsole();
-        //});
     }
 }

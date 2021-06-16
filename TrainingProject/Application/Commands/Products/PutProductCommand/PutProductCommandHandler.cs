@@ -32,7 +32,10 @@ namespace TrainingProject.Application.Commands.Products.PutProductCommand
             var storeDepartment = await _context.storeDepartments
                 .FirstOrDefaultAsync(sd => sd.StoreId == stand.StoreId && sd.DepartmentId == stand.DepartmentId, cancellationToken);
 
-            if (!(storeDepartment.Scheme == SchemeType.ClientBackAddress && cell.Type == CellType.Client)) product.Quantity = request.Quantity;
+            if (!(storeDepartment.Scheme == SchemeType.ClientBackAddress && cell.Type == CellType.Client))
+            {
+                product.Quantity = request.Quantity;
+            }
             product.UpdateDate = DateTime.Now;
             await _context.SaveChangesAsync(cancellationToken);
             return _mapper.Map<ProductDomainModelForGet>(product);

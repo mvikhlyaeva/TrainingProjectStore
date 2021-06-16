@@ -31,6 +31,7 @@ namespace TrainingProject.Application.Queries.Stands.GetStand
 
             var stands = await _context.stands
                 .Where(st => st.StoreId == request.StoreId && st.DepartmentId == request.DepartmentId)
+                .OrderBy(st => st.Id)
                 .ToListAsync(cancellationToken);
 
             return _mapper.Map<List<StandDomainModelForGet>>(stands);

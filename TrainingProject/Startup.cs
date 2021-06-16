@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 using TrainingProject.Core.Middlwares;
 using TrainingProject.tables;
@@ -16,12 +17,9 @@ namespace TrainingProject
         {
             services.AddDbContext<ApplicationContext>(options => options
                 .UseNpgsql("Host=localhost;Port=5433;Database=usersdb;Username=postgres;Password=Qwert6789",
-                    builder => builder.MigrationsAssembly(typeof(ApplicationContext).Assembly.GetName().Name))); //Πετλεκρθÿ
+                    builder => builder.MigrationsAssembly(typeof(ApplicationContext).Assembly.GetName().Name)));
 
             services.AddCors();
-
-            //services.AddDbContext<ApplicationContext>(options => options
-            //  .UseLoggerFactory(loggerFactory);
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -36,9 +34,6 @@ namespace TrainingProject
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationContext context)
         {
-            //app.UseDefaultFiles();
-            //app.UseStaticFiles();
-
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             if (env.IsDevelopment())
@@ -55,6 +50,13 @@ namespace TrainingProject
             });
 
             app.UseMiddleware<ExceptionCatchMiddleware>();
+
+            var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder.AddDebug();
+            });
+
+            app.UseMiddleware<RequestLoggingMiddleware>(loggerFactory);
 
             app.UseRouting();
 

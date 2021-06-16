@@ -26,4 +26,8 @@
     <ProjectReference Include="..\TrainProject.DomainModels\TrainProject.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\Queries\StoreDepartments\GetAllStoreDepartments\" />
+  </ItemGroup>
+
 </Project>
