@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using System.Threading.Tasks;
 using TrainingProject.Application.Queries.Stands.GetStand;
 using TrainingProject.Application.Queries.Stands.PostStand;
 using TrainingProject.Domain;
-using TrainingProject.tables;
 using TrainProject.Domain.DomainModels;
 
 namespace TrainingProject.Controllers

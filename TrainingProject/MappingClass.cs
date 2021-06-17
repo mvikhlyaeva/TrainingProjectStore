@@ -33,21 +33,6 @@ namespace TrainingProject
 
             CreateMap<Product, ProductDomainModelForGet>();
             CreateMap<ProductDomainModelForGet, Product>();
-
-            /*CreateMap<List<StandDomainModelForGet>, List<Stand>>();
-            CreateMap<List<Stand>, List<StandDomainModelForGet>>();
-
-            CreateMap<List<StandDomainModelForPost>, List<Stand>>();
-            CreateMap<List<Stand>, List<StandDomainModelForPost>>();
-
-            CreateMap<List<StandDomainModelForPost>, IOrderedQueryable<StandDomainModelForPost>>();
-            CreateMap<IOrderedQueryable<StandDomainModelForPost>, List<StandDomainModelForPost>>();
-
-            CreateMap<List<StandDomainModelForPost>, IOrderedEnumerable<StandDomainModelForPost>>();
-            CreateMap<IOrderedEnumerable<StandDomainModelForPost>, List<StandDomainModelForPost>>();
-
-            CreateMap<List<Stand>, IOrderedQueryable<StandDomainModelForPost>>();
-            CreateMap<IOrderedQueryable<StandDomainModelForPost>, List<Stand>>();*/
         }
     }
 }
