@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using TrainingProject.Core.Exceptions.StandExceptions;
 using TrainingProject.Core.Exceptions.StandExceptons;
 using TrainingProject.tables;
 using TrainProject.Domain.DomainModels;
@@ -39,6 +40,8 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
             int j = 0, i = 0;
             for (; i < standsdb.Count() && j < stands.Count();)
             {
+                if (stands[i].Size <= 0 || stands[i].Size > 3) throw new StandIncorrectSizeException();
+                if (stands[i].Side <= 0) throw new StandIncorrectSideException();
                 if (stands[j].Id == null) { j++; continue; }
                 if (standsdb[i].Id == stands[j].Id)
                 {
