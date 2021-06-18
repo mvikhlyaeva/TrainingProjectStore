@@ -64,7 +64,7 @@ namespace TrainingProject.Controllers
 
         [HttpDelete("store/{storeId}/department/{departmentId}")]
         [ProducesResponseType(typeof(StoreDepartmentDomainModel), StatusCodes.Status200OK)]
-        public async Task<StoreDepartmentDomainModel> DeleteStoreDepartments(int storeId, int departmentId, CancellationToken cancellationToken)
+        public async Task<StoreDepartment> DeleteStoreDepartments(int storeId, int departmentId, CancellationToken cancellationToken)
         {
             return await _mediator.Send(new DeleteStoreDepartmentCommandQuery(storeId, departmentId), cancellationToken);
         }

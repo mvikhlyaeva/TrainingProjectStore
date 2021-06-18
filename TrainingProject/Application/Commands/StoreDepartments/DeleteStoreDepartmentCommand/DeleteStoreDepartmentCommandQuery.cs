@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using TrainingProject.Domain;
+using TrainingProject.tables;
 
 namespace TrainingProject.Application.Queries.StoreDepartments.DeleteStoreDepartment
 {
-    public class DeleteStoreDepartmentCommandQuery : IRequest<StoreDepartmentDomainModel>
+    public class DeleteStoreDepartmentCommandQuery : IRequest<StoreDepartment>
     {
         public int StoreId { get; }
         public int DepartmentId { get; }
