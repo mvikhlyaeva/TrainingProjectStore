@@ -4,25 +4,25 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TrainingProject.Core;
+using TrainingProject.Core.Enums;
 using TrainingProject.Core.Exceptions.ProductExceptions;
 using TrainingProject.tables;
 using TrainProject.Domain.DomainModels.ProductDomainModel;
 
 namespace TrainingProject.Application.Commands.Products.PutProductCommand
 {
-    public class PutProductCommandHandler : IRequestHandler<PutProductCommandQuery, ProductDomainModelForGet>
+    public class ChangeQuantityProductCommandHandler : IRequestHandler<ChangeQuantityProductCommandQuery, ProductDomainModelForGet>
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-        public PutProductCommandHandler(ApplicationContext context, IMapper mapper)
+        public ChangeQuantityProductCommandHandler(ApplicationContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<ProductDomainModelForGet> Handle(PutProductCommandQuery request, CancellationToken cancellationToken)
+        public async Task<ProductDomainModelForGet> Handle(ChangeQuantityProductCommandQuery request, CancellationToken cancellationToken)
         {
             var product = await _context.products.FirstOrDefaultAsync(pr => pr.Id == request.Id, cancellationToken);
             if (product == null)

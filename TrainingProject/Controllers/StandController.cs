@@ -34,7 +34,7 @@ namespace TrainingProject.Controllers
         [ProducesResponseType(typeof(StandDomainModel), StatusCodes.Status200OK)]
         public async Task<List<StandDomainModelForPost>> AddUpDelStands([FromQuery] int storeId, int departmentId, List<StandDomainModelForPost> stands, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PostStandCommandQuery(storeId, departmentId, stands), cancellationToken);
+            return await _mediator.Send(new UpdateStandCommandQuery(storeId, departmentId, stands), cancellationToken);
         }
     }
 }

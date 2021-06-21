@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using TrainingProject.Application.Commands.Cells.DeleteCellCommand;
 using TrainingProject.Application.Queries.Cells.GetCell;
 using TrainingProject.Application.Queries.Cells.PostCell;
 using TrainingProject.Application.Queries.Cells.PutCell;
@@ -28,14 +29,14 @@ namespace TrainingProject.Controllers
         [ProducesResponseType(typeof(List<CellDomainModelForPost>), StatusCodes.Status200OK)]
         public async Task<List<CellDomainModelForPost>> AddCells(int standId, List<CellDomainModelForPost> cells, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PostCellQuery(standId, cells), cancellationToken);
+            return await _mediator.Send(new AddCellQuery(standId, cells), cancellationToken);
         }
 
         [HttpPut("cells/{cellId}")]
         [ProducesResponseType(typeof(Cell), StatusCodes.Status200OK)]
         public async Task<Cell> UpdateCells(int cellId, CellDomainModelForPut cell, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PutCellCommandQuery(cellId, cell), cancellationToken);
+            return await _mediator.Send(new UpdateCellCommandQuery(cellId, cell), cancellationToken);
         }
 
         [HttpGet("cells")]
@@ -43,6 +44,13 @@ namespace TrainingProject.Controllers
         public async Task<List<CellDomainModelForPost>> GetCells(int standId, CancellationToken cancellationToken)
         {
             return await _mediator.Send(new GetCellQuery(standId), cancellationToken);
+        }
+
+        [HttpDelete("cells/{cellId}")]
+        [ProducesResponseType(typeof(Cell), StatusCodes.Status200OK)]
+        public async Task<Cell> DeleteCells(int cellId, CancellationToken cancellationToken)
+        {
+            return await _mediator.Send(new DeleteCellQuery(cellId), cancellationToken);
         }
     }
 }

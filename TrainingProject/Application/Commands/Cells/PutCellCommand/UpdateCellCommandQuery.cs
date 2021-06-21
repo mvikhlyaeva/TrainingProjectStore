@@ -4,12 +4,12 @@ using TrainProject.Domain.DomainModels;
 
 namespace TrainingProject.Application.Queries.Cells.PutCell
 {
-    public class PutCellCommandQuery : IRequest<Cell>
+    public class UpdateCellCommandQuery : IRequest<Cell>
     {
         public int CellId { get; }
         public CellDomainModelForPut Cell { get; }
 
-        public PutCellCommandQuery(int cellId, CellDomainModelForPut cell)
+        public UpdateCellCommandQuery(int cellId, CellDomainModelForPut cell)
         {
             CellId = cellId;
             Cell = cell;

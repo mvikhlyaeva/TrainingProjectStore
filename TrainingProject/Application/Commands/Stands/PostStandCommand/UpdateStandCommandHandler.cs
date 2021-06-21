@@ -12,18 +12,18 @@ using TrainProject.Domain.DomainModels;
 
 namespace TrainingProject.Application.Queries.Stands.PostStand
 {
-    public class PostStandCommandHandler : IRequestHandler<PostStandCommandQuery, List<StandDomainModelForPost>>
+    public class UpdateStandCommandHandler : IRequestHandler<UpdateStandCommandQuery, List<StandDomainModelForPost>>
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-        public PostStandCommandHandler(ApplicationContext context, IMapper mapper)
+        public UpdateStandCommandHandler(ApplicationContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<List<StandDomainModelForPost>> Handle(PostStandCommandQuery request, CancellationToken cancellationToken)
+        public async Task<List<StandDomainModelForPost>> Handle(UpdateStandCommandQuery request, CancellationToken cancellationToken)
         {
             var storeDepartment = await _context.storeDepartments
                 .FirstOrDefaultAsync(sd => sd.StoreId == request.StoreId && sd.DepartmentId == request.DepartmentId, cancellationToken);
@@ -74,7 +74,7 @@ namespace TrainingProject.Application.Queries.Stands.PostStand
             {
                 Stand stand = new Stand();
 
-                if (standsdbAll.Count() > 0)
+                if (standsdbAll.Any())
                 {
                     stands[j].Id = standsdbAll[standsdbAll.Count() - 1].Id + j + 1;
                 }

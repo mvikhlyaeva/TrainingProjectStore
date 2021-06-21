@@ -11,7 +11,7 @@ using TrainingProject.Application.Queries.StoreDepartments.DeleteStoreDepartment
 using TrainingProject.Application.Queries.StoreDepartments.GetStoreDepartment;
 using TrainingProject.Application.Queries.StoreDepartments.PatchStoreDepartment;
 using TrainingProject.Application.Queries.StoreDepartments.PostStoreDepartment;
-using TrainingProject.Core;
+using TrainingProject.Core.Enums;
 using TrainingProject.Domain;
 using TrainingProject.tables;
 
@@ -45,14 +45,14 @@ namespace TrainingProject.Controllers
         [ProducesResponseType(typeof(StoreDepartmentDomainModel), StatusCodes.Status200OK)]
         public async Task<StoreDepartmentDomainModel> AddStoreDepartments([FromBody] StoreDepartmentDomainModel SD, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PostStoreDepartmentCommandQuery(SD), cancellationToken);
+            return await _mediator.Send(new AddStoreDepartmentCommandQuery(SD), cancellationToken);
         }
 
         [HttpPatch("store/{storeId}/department/{departmentId}")]
         [ProducesResponseType(typeof(SchemeType), StatusCodes.Status200OK)]
         public async Task<SchemeType> ChangeStoreDepartments(int storeId, int departmentId, [FromBody] SchemeType scheme, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PatchStoreDepartmentCommandQuery(storeId, departmentId, scheme), cancellationToken);
+            return await _mediator.Send(new ChangeStoreDepartmentCommandQuery(storeId, departmentId, scheme), cancellationToken);
         }
 
         [HttpGet("store/{storeId}/department/{departmentId}")]

@@ -1,11 +1,5 @@
-﻿namespace TrainingProject.Core
+﻿namespace TrainingProject.Core.Enums
 {
-    public enum CellType
-    {
-        Client,
-        Top
-    }
-
     public enum SchemeType
     {
         ClientBackAddress,

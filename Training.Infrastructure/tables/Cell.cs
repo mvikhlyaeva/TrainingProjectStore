@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TrainingProject.Core;
+using TrainingProject.Core.Enums;
 
 namespace TrainingProject.tables
 {

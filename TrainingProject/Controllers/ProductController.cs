@@ -28,14 +28,14 @@ namespace TrainingProject.Controllers
         [ProducesResponseType(typeof(List<ProductDomainModelForGet>), StatusCodes.Status200OK)]
         public async Task<List<ProductDomainModelForGet>> AddProducts(int cellId, List<ProductDomainModelForPost> products, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PostProductCommandQuery(cellId, products), cancellationToken);
+            return await _mediator.Send(new AddProductCommandQuery(cellId, products), cancellationToken);
         }
 
         [HttpPut("products/{id}")]
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         public async Task<ProductDomainModelForGet> ChangeQuantityOfProducts(int id, decimal quantity, CancellationToken cancellationToken)
         {
-            return await _mediator.Send(new PutProductCommandQuery(id, quantity), cancellationToken);
+            return await _mediator.Send(new ChangeQuantityProductCommandQuery(id, quantity), cancellationToken);
         }
 
         [HttpDelete("products/{id}")]

@@ -1,15 +1,15 @@
 ﻿using MediatR;
-using TrainingProject.Core;
+using TrainingProject.Core.Enums;
 
 namespace TrainingProject.Application.Queries.StoreDepartments.PatchStoreDepartment
 {
-    public class PatchStoreDepartmentCommandQuery : IRequest<SchemeType>
+    public class ChangeStoreDepartmentCommandQuery : IRequest<SchemeType>
     {
         public int StoreId { get; }
         public int DepartmentId { get; }
         public SchemeType Scheme { get; }
 
-        public PatchStoreDepartmentCommandQuery(int storeId, int departmentId, SchemeType scheme)
+        public ChangeStoreDepartmentCommandQuery(int storeId, int departmentId, SchemeType scheme)
         {
             StoreId = storeId;
             DepartmentId = departmentId;

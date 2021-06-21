@@ -9,18 +9,18 @@ using TrainingProject.tables;
 
 namespace TrainingProject.Application.Queries.StoreDepartments.PostStoreDepartment
 {
-    public class PostStoreDepartmentCommandHandler : IRequestHandler<PostStoreDepartmentCommandQuery, StoreDepartmentDomainModel>
+    public class AddStoreDepartmentCommandHandler : IRequestHandler<AddStoreDepartmentCommandQuery, StoreDepartmentDomainModel>
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-        public PostStoreDepartmentCommandHandler(ApplicationContext context, IMapper mapper)
+        public AddStoreDepartmentCommandHandler(ApplicationContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<StoreDepartmentDomainModel> Handle(PostStoreDepartmentCommandQuery request, CancellationToken cancellationToken)
+        public async Task<StoreDepartmentDomainModel> Handle(AddStoreDepartmentCommandQuery request, CancellationToken cancellationToken)
         {
             var storeDepartment = await _context.storeDepartments
                 .FirstOrDefaultAsync(sd => sd.StoreId == request.StD.StoreId && sd.DepartmentId == request.StD.DepartmentId, cancellationToken);

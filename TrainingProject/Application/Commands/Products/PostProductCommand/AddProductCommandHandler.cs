@@ -6,25 +6,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TrainingProject.Core;
+using TrainingProject.Core.Enums;
 using TrainingProject.Core.Exceptions.ProductExceptions;
 using TrainingProject.tables;
 using TrainProject.Domain.DomainModels.ProductDomainModel;
 
 namespace TrainingProject.Application.Commands.Products.PostProductCommand
 {
-    public class PostProductCommandHandler : IRequestHandler<PostProductCommandQuery, List<ProductDomainModelForGet>>
+    public class AddProductCommandHandler : IRequestHandler<AddProductCommandQuery, List<ProductDomainModelForGet>>
     {
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
 
-        public PostProductCommandHandler(ApplicationContext context, IMapper mapper)
+        public AddProductCommandHandler(ApplicationContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<List<ProductDomainModelForGet>> Handle(PostProductCommandQuery request, CancellationToken cancellationToken)
+        public async Task<List<ProductDomainModelForGet>> Handle(AddProductCommandQuery request, CancellationToken cancellationToken)
         {
             var cell = await _context.cells.FirstOrDefaultAsync(cell => cell.Id == request.CellId, cancellationToken);
             if (cell == null)

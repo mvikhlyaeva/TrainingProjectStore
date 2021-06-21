@@ -4,13 +4,13 @@ using TrainProject.Domain.DomainModels;
 
 namespace TrainingProject.Application.Queries.Stands.PostStand
 {
-    public class PostStandCommandQuery : IRequest<List<StandDomainModelForPost>>
+    public class UpdateStandCommandQuery : IRequest<List<StandDomainModelForPost>>
     {
         public int StoreId { get; }
         public int DepartmentId { get; }
         public List<StandDomainModelForPost> Stands { get; }
 
-        public PostStandCommandQuery(int storeId, int departmentId, List<StandDomainModelForPost> stands)
+        public UpdateStandCommandQuery(int storeId, int departmentId, List<StandDomainModelForPost> stands)
         {
             StoreId = storeId;
             DepartmentId = departmentId;

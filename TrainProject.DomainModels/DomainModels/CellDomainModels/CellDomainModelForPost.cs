@@ -1,4 +1,4 @@
-﻿using TrainingProject.Core;
+﻿using TrainingProject.Core.Enums;
 
 namespace TrainProject.Domain.DomainModels
 {
